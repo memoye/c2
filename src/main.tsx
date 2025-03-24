@@ -2,10 +2,28 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 import { router } from "./routes";
+import { DEFAULT_UI_THEME, THEME_STORAGE_KEY } from "./lib/constants";
+import { ThemeProvider } from "./components/providers/theme-provider";
+import { LoadingBarContainer } from "react-top-loading-bar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AuthProvider } from "./components/providers/auth-provider";
 import "./index.css";
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
+    <ThemeProvider
+      defaultTheme={DEFAULT_UI_THEME}
+      storageKey={THEME_STORAGE_KEY}
+    >
+      <LoadingBarContainer props={{ color: "var(--brand)" }}>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <RouterProvider router={router} />
+          </AuthProvider>
+        </QueryClientProvider>
+      </LoadingBarContainer>
+    </ThemeProvider>
+  </StrictMode>,
 );
