@@ -3,34 +3,27 @@
 
 <head>
   <title>Silent Renew</title>
-</head>
-
-<body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client-ts/2.0.2/browser/oidc-client-ts.min.js"></script>
   <script>
-    new Oidc.UserManager().signinSilentCallback()
-      .catch(error => {
-        console.error('Silent renew failed:', error);
-      })
-      .finally(() => {
-        window.close();
-      });
+    // Force HTTP for development
+    const isDev = window.location.hostname === 'localhost';
+    const protocol = isDev ? 'http://' : 'https://';
+    const baseUrl = protocol + window.location.host;
+
+    const params = new URLSearchParams(window.location.search);
+    const config = {
+      authority: window.location.origin + '/vault',
+      client_id: params.get('client_id'),
+      response_type: params.get('response_type'),
+      scope: params.get('scope'),
+      silent_redirect_uri: baseUrl + '/silent-renew.html'
+    };
+
+    new oidc.UserManager(config).signinSilentCallback()
+      .catch(error => console.error('Silent renew failed:', error));
   </script>
-</body>
+</head>
+
+<body></body>
 
 </html>
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <title>Silent Renew</title>
-</head>
-<body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client-ts/2.0.2/browser/oidc-client-ts.min.js"></script>
-  <script>
-    new Oidc.UserManager().signinSilentCallback()
-      .catch(console.error)
-      .finally(() => window.close());
-  </script>
-</body>
-</html> -->

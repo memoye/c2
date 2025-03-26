@@ -2,6 +2,7 @@ import {
   Folder,
   Forward,
   MoreHorizontal,
+  Projector,
   Trash2,
   type LucideIcon,
 } from "lucide-react";
@@ -25,9 +26,15 @@ import {
 import { useSidebar } from "@/hooks/use-sidebar";
 
 export function NavProjects({
-  projects,
+  projects = [
+    {
+      name: "Something",
+      icon: Projector,
+      url: "#",
+    },
+  ],
 }: {
-  projects: {
+  projects?: {
     name: string;
     url: string;
     icon: LucideIcon;

@@ -7,8 +7,8 @@ import {
   DropdownMenuTrigger,
 } from "./dropdown-menu";
 import { Button } from "./button";
-import { capitalize, cn } from "@/lib/utils";
 import { ReactNode } from "react";
+import { capitalize } from "@/lib/utils";
 
 type ThemeToggleProps =
   | { variant: "dropdown"; className?: string; children?: ReactNode }
@@ -83,7 +83,7 @@ export function ThemeToggle({
       >
         <span
           data-theme={theme}
-          className="bg-background hover:border-primary absolute top-1/2 !grid size-4.5 -translate-y-1/2 place-items-center rounded-full drop-shadow-sm transition-[left] duration-300 ease-out data-[theme='dark']:left-[calc(--spacing(3))] data-[theme='light']:left-px data-[theme='system']:left-[calc(100%-(--spacing(4))-3px)]"
+          className="bg-background hover:border-primary absolute top-1/2 !grid size-4.5 -translate-y-1/2 place-items-center rounded-full drop-shadow-sm transition-[left] duration-300 ease-out data-[theme='dark']:left-[calc(100%-(--spacing(4))-3px)] data-[theme='light']:left-px data-[theme='system']:left-[calc(--spacing(3))]"
         >
           {theme === "light" && (
             <SunIcon size={12} className="animate-in fade-in-0" />

@@ -16,6 +16,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useSidebar } from "@/hooks/use-sidebar";
+import { Logo } from "../ui/logo";
 
 export function TeamSwitcher({
   teams,
@@ -40,10 +41,14 @@ export function TeamSwitcher({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
+              variant="outline"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                <activeTeam.logo className="size-4" />
+              <div
+                title="Chronica"
+                className="flex aspect-square size-8 items-center justify-center rounded-lg bg-transparent"
+              >
+                <Logo className="size-6" iconOnly />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{activeTeam.name}</span>

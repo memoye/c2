@@ -1,13 +1,21 @@
-// atoms.ts
 import { atom } from "jotai";
 import type { User } from "oidc-client-ts";
 
-export const userAtom = atom<User | null>(null);
-
-export const accessTokenAtom = atom(
-  (get) => get(userAtom)?.access_token || null,
+// Base
+export const guestTokenAtom = atom<string | null>(null);
+export const userAtom = atom<(User & { profile: { role: string } }) | null>(
+  null,
 );
+
+// Derived
+export const currentTokenAtom = atom((get) => {
+  const user = get(userAtom);
+  const guestToken = get(guestTokenAtom);
+  return user?.access_token || guestToken;
+});
 
 export const isAuthenticatedAtom = atom(
   (get) => !!get(userAtom) && !get(userAtom)?.expired,
 );
+
+export const authInitializedAtom = atom(false);

@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
-import logoIcon from "/logo-icon.png";
-import logoIconWhite from "/logo-icon-white.png";
-import logoIconGray from "/logo-icon-gray.png";
+import logoIcon from "@/assets/images/logo-icon.png";
+import logoIconFull from "@/assets/images/logo-full.png";
+import logoIconWhite from "@/assets/images/logo-icon-white.png";
+import logoIconGray from "@/assets/images/logo-icon-gray.png";
 
 interface LogoProps {
   iconOnly?: boolean;
@@ -60,7 +61,7 @@ export function Logo({ iconOnly, className, noColor }: LogoProps) {
     >
       <img
         className="h-12 w-28 object-contain"
-        src="/logo-full.png"
+        src={logoIconFull}
         width={1800}
         height={535}
         alt="Chronica"
