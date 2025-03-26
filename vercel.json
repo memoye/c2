@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/silent-renew.html",
+      "destination": "/silent-renew.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
