@@ -3,9 +3,9 @@ import type { User } from "oidc-client-ts";
 
 // Base
 export const guestTokenAtom = atom<string | null>(null);
-export const userAtom = atom<(User & { profile: { role: string } }) | null>(
-  null,
-);
+export const userAtom = atom<
+  (User | (User & { profile: { role: string } })) | null
+>(null);
 
 // Derived
 export const currentTokenAtom = atom((get) => {

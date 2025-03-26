@@ -45,7 +45,9 @@ export function UserActions() {
             <span className="truncate text-xs font-medium">
               {profile?.given_name} {profile?.family_name}
             </span>
-            <span className="truncate text-xs font-light">{profile?.role}</span>
+            <span className="truncate text-xs font-light">
+              {profile?.role as string}
+            </span>
           </div>
           <Separator
             orientation="vertical"
